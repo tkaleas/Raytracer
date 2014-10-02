@@ -1,0 +1,7 @@
+FILE cg_gen_testgrid2.txt
+PRST 1.3
+OCTSIZE 10
+VSIZE 0.05
+GSIZE 72
+TIME 1.2
+PAD 2

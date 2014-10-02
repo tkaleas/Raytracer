@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project 3 Raytracer", "Project 3 Raytracer\Project 3 Raytracer.vcproj", "{F03198D7-6066-4912-BB38-6600EB3ED070}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D94AE0EF-C734-4419-A870-E7A78149593D} = {D94AE0EF-C734-4419-A870-E7A78149593D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OgreMath", "OgreMath\OgreMath.vcproj", "{D94AE0EF-C734-4419-A870-E7A78149593D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F03198D7-6066-4912-BB38-6600EB3ED070}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F03198D7-6066-4912-BB38-6600EB3ED070}.Debug|Win32.Build.0 = Debug|Win32
+		{F03198D7-6066-4912-BB38-6600EB3ED070}.Release|Win32.ActiveCfg = Release|Win32
+		{F03198D7-6066-4912-BB38-6600EB3ED070}.Release|Win32.Build.0 = Release|Win32
+		{D94AE0EF-C734-4419-A870-E7A78149593D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D94AE0EF-C734-4419-A870-E7A78149593D}.Debug|Win32.Build.0 = Debug|Win32
+		{D94AE0EF-C734-4419-A870-E7A78149593D}.Release|Win32.ActiveCfg = Release|Win32
+		{D94AE0EF-C734-4419-A870-E7A78149593D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
