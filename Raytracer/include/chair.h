@@ -1,0 +1,3 @@
+void drawChairLeg();
+void drawChair();
+

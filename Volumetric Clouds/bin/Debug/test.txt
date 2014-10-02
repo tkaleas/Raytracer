@@ -1,0 +1,15 @@
+FILE testing_light_above.bmp
+RESO 1000 1000
+EYEP -1 -1 -1
+VDIR 1 1 1
+UVEC 0 1 0
+FOVY 45
+LPOS 0 10 0
+LCOL 1.0 1.0 1.0
+STEP 0.05
+BCOL 0.05 0.05 0.05
+RCVG red_test_density.txt
+GCVG green_test_density.txt
+BCVG blue_test_density.txt
+RHVG highres.txt
+KAPA 0.5

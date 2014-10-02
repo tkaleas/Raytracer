@@ -1,0 +1,130 @@
+Ray Tracer Design
+-----------------
+
+GDisplay
+--------
+-Has Raytracer
+-LoadConfig();
+	-Holds Camera
+	-Load Mat into Scene Manager
+	-Load Rest of Config into RayTracer
+-Output Image File
+-Call Raytrace for Each Pixel of Image File
+	-Call RayTrace to Cache Scene Manager and load things into RayTracer
+	-Compute World Space Ray for each pixel
+	-Call RayTracer to get color of pixel
+-loadConfig();
+-outputRayTraceBMP();
+
+SceneMgr
+--------
+-cacheScene(); //Caches scene transformation Matrices
+-add Material struct (or class is necessary) //Material Struct
+-add Material[3] for each material in the SceneMgr;
+-hold the light position
+	
+	SceneNode
+	---------
+	-cacheNode();
+	-add T , T^-1, and TStar which are total transforms for each node and all of its children.
+	-add Materials unsigned int 1 2 or 3
+
+RayTracer
+---------
+RayTracer(SceneManager* sm);
+- loadConfig();
+	-load config stuff
+		-position of point light
+		-color of light
+		-color of ambient light
+		-load materials, mat123.
+- vector3 (color) RayTrace(SceneMgr*);
+- updateRayTracer(); //Caches the scenemgr, and loads up the objects and lights into the raytracer itself
+	-list of light sources
+	-list of light source locations
+	-mac depth
+- TraceRay(ray, depth, etc. -see notes on implementation-);
+- RayIntersect(object, j)
+
+
+RayTrace Operation
+-------------------
+-Press r
+-outputRayTraceBMP();
+	-loadConfig();
+		-RayTracer->loadConfig();
+		-Load Viewing Shit (Camera Stuff);
+		-createViewingGeometry();
+			-Do Simple Viewing Geometry Loading Shit and store those values
+		-Create Image Array of the right size, initialize all values to to 0.0;
+	-outputImageBMP();
+		-SceneMgr->cacheScene(); //Caches the Scene transformations at each node, etc;
+		-Loop through all pixels and 
+			Create a Ray Object;
+			
+			RayTracer->TraceRay(E,D,0,&color); //Return the Correct Color
+			
+			pixel(x,y) = color;
+			
+			RayTracer->TraceRay(E,D,0,&color);
+				-Intialize:
+			  vec3 	ReflectedDirection, 
+					RefractedDirection, 
+					TransmittedDirection;	
+				rgb	spec, 
+					ReflectedColor, 
+					refr, 
+					RefractedColor, 
+					trans, 
+					TransmittedColor;
+
+				-Create a Ray Object from this, and
+				-Follow Algorithm Specified
+				IntersectionPoint = RayIntersect(objects,&SceneNode object, vector3 &n);
+				
+				RayIntersect(SceneNode* n, vector3 &n); //Returns an intersection point, an object, and a normal);
+					-Intersect with all objects and get min object index j that is closest to start of ray.
+					Also return a vector that is the World Space intersection point, and the object(sceneNode) index;
+					Otherwise return NULL as both IntersectionPoint and j;
+						-Used Cached Transformed matrices to compute everything;
+						-Return the intersection point and the normal at that point if it exists.
+			
+				If the SceneNode Exists Continue;
+				
+					If Ray is Parallel to Light Directions k
+						-color = LtSource[k];
+					else color = BackGroundColor
+						return;
+				
+				else 
+					if (Object->ks > 0) //Non Zero Specular Reflectivity
+						computeReflectedDirection;
+						TraceRay(IntersectionPoint, ReflectedDirection,depth+1,ReflectedColor)
+						spec = object->ks*reflectedcolor
+					else
+					 spec = 0;
+					
+					if (Object->kt > 0) then non-zero transmittance
+						computeRefractedDirection;
+						TraceRay(IntersectionPoint,RefractedDirection,depth+1, RefractedColor);
+						refr = object->kt * RefractedColor
+					else refr = 0;
+					
+				//Shadow Feelers
+					if inside(ray,object)
+						color = 0;
+						color = object->ka*ambient + refr;
+						for each light;
+							if(ShadowRayUnblocked(IntersectionPoint, light->location)
+								then color = color + light->color * (object->kd*object-> * (n dot light->location) + spec*(ReflectedRay(light->location, n, IntersectionPoint) dot E)^object->kn)
+					end
+				end
+			end
+							
+						
+			ShadowRayUnblocked(p1,p2) - boolean whether the object is blocked by another object.
+			-Ray Reflected Ray (p1,pN,pO) - returns the reflection of ray p1 about normal pN at point pO;
+			
+	Ouput Image
+				
+	
