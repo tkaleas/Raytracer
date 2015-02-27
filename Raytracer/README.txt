@@ -1,10 +1,6 @@
 RayTracer Notes
 ----------------
 
-In addition to the core things of the RayTracer I have completed the additional things.
-
-Extra Credit
-
 Transparency/Refractions - Objects that are transparent will modulate the color behind them at a refractive index provided by the paramater
 							in the configuration. Transparent objects can still reflect but are not blinn-phong lit, and cast shadows.
 							
